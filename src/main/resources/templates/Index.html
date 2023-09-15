@@ -11,23 +11,26 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-    <script src="JS/JavaScript.js" defer></script>
+            crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Home.css">
+    <script src="JS/Home.js" defer></script>
+
 </head>
 <body>
 <h1 class="text-center mb-3">Sorteie Numeros</h1>
 <div class="container">
-    <div class="input-group mb-3">
+    <div id="gQtdNum" class="input-group mb-3">
         <input id="qtdNum" type="number" class="form-control" placeholder="Quantidade de numeros" aria-label="qtdnum"
                aria-describedby="qtdNum">
         <span class="input-group-text">Quantidade de Numeros</span>
     </div>
-    <div class="input-group mb-3">
+    <div id="gNumMin" class="input-group mb-3">
         <input id="numMin" type="number" class="form-control" placeholder="Minimo" aria-label="numMin"
                aria-describedby="numMin">
         <span class="input-group-text">Numero mínimo</span>
     </div>
-    <div class="input-group mb-3">
+    <div id="gNumMax" class="input-group mb-3">
         <input id="numMax" type="number" class="form-control" placeholder="Maximo" aria-label="numMax"
                aria-describedby="numMax">
         <span class="input-group-text">Numero máximo</span>
@@ -67,18 +70,45 @@
             <button class="btn btn-success" id="enviar" type="submit">Sortear</button>
         </div>
     </div>
-    <div class="col-sm-12 mt-5 text-center" th:if="${resultado}">
-        <table class="table table-bordered">
-            <thead>
-            <th scope="col">Numero</th>
-            <th scope="col">Resultado</th>
-            </thead>
-            <tbody>
-            <tr th:each="numero, cont :${resultado}">
-                <td th:text="${cont.index + 1}"></td>
-                <td th:text="${numero}"></td>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-sm-6 mt-5 text-center" th:if="${resultado}">
+            <table class="table table-bordered">
+                <thead>
+                <th scope="col">Numero</th>
+                <th scope="col">Resultado</th>
+                </thead>
+                <tbody>
+                <tr th:each="numero, cont :${resultado}">
+                    <td th:text="${cont.index + 1}"></td>
+                    <td th:text="${numero}"></td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 mt-5 " th:if="${resultado}">
+            <h4 class="text-center">Data E Hora do Sorteio:</h4>
+            <h1 class="text-center" id="dataFormatada"><span th:text="${dataFormatada}"></span></h1>
+            <div class="row mt-5">
+                <div class="col-sm-3 " th:if="${resultado}">
+                    <h4 class="text-center">Foram sorteados: </h4>
+                </div>
+                <div class="col-sm-1" th:if="${resultado}">
+                    <h1 class="text-center" id="valoresSorteados"><span th:text="${qtdNum}"></span></h1>
+                </div>
+                <div class="col-sm-3" th:if="${resultado}">
+                    <h4 class="text-center">número(s) entre </h4>
+                </div>
+                <div class="col-sm-1" th:if="${resultado}">
+                    <h1 class="text-center" id="numMinimo"><span th:text="${numMin}"></span></h1>
+                </div>
+                <div class="col-sm-3" th:if="${resultado}">
+                    <h4 class="text-center">e </h4>
+                </div>
+                <div class="col-sm-1" th:if="${resultado}">
+                    <h1 class="text-center" id="numMaximo"><span th:text="${numMax}"></span></h1>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>

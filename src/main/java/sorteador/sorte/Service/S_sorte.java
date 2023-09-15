@@ -2,7 +2,10 @@ package sorteador.sorte.Service;
 
 import sorteador.sorte.Model.M_sorte;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
 
 public class S_sorte {
 
@@ -24,11 +27,17 @@ public class S_sorte {
                 } while (repetiu);
             }
             resultado[i] = result;
-            if (ordena) {
-                Arrays.sort(resultado);
-            }
+
+        }if (ordena) {
+            Arrays.sort(resultado);
         }
-        M_sorte m_sorte = new M_sorte(resultado);
+
+        Date data = new Date();
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd 'de' MMM 'de' yyyy, HH:mm", new Locale("pt", "BR"));
+
+        String dataFormatada = formato.format(data);
+        M_sorte m_sorte = new M_sorte(resultado, dataFormatada);
 
         return m_sorte;
     }

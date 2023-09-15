@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sorteador.sorte.Model.M_sorte;
 import sorteador.sorte.Service.S_sorte;
 
@@ -31,6 +32,7 @@ public class C_sorte {
         model.addAttribute("repetir", repetir);
         model.addAttribute("ordena", ordena);
         model.addAttribute("resultado", sorteio.getResultado());
+        model.addAttribute("dataFormatada", sorteio.getDataFormatada());
         return "/Index";
     }
 }
